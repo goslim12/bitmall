@@ -26,17 +26,18 @@
 
 
 			<!--  현재 페이지 자바스크립  -------------------------------------------->
-			<script language = "javascript">
-				function CheckAgree() 
-				{
-					if (form2.agree.checked == false) 
-					{
-						alert("이용약관 내용에 동의를 체크해 주십시오.");
-						return;
-					}
-					location.href = "/user/member_join";
-				}
-			</script>
+<script src="${pageContext.servletContext.contextPath}/assets/js/jquery/jquery-1.9.0.js" type="text/javascript"></script>
+<script language = "javascript">
+	function CheckAgree() 
+	{
+		if (form2.agree.checked == false) 
+		{
+			alert("이용약관 내용에 동의를 체크해 주십시오.");
+			return;
+		}
+		location.href = "${pageContext.servletContext.contextPath}/user/member_join";
+	}
+</script>
 
 			<table border="0" cellpadding="0" cellspacing="0" width="747">
 				<tr><td height="13"></td></tr>
@@ -115,7 +116,7 @@
 			<table border="0" cellpadding="0" cellspacing="0" width="685" class="cmfont">
 				<tr>
 					<td height="45" align="right">
-						<a href="javascript:CheckAgree()"><img src="${pageContext.servletContext.contextPath }/assets/images/b_agreeok.gif" border="0"></a> 
+						<a href="javascript:CheckAgree()" id="btn-join"><img src="${pageContext.servletContext.contextPath }/assets/images/b_agreeok.gif" border="0"></a> 
 						<a href="index.html"><img src="${pageContext.servletContext.contextPath }/assets/images/b_agreeno.gif" border="0"></a>
 					</td>
 				</tr>
@@ -132,7 +133,7 @@
 
 <!-- 화면 하단 부분 : 회사정보/회사소개/이용정보/개인보호정책 ... ---------------------------->
 <br><br>
-<table width="959" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+<!-- <table width="959" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
 	<tr> 
 		<td background="${pageContext.servletContext.contextPath }/assets/images/footer_bg.gif" height="11"></td>
 	</tr>
@@ -188,7 +189,7 @@
 			</table>
 		</td>
 	</tr>
-</table>
+</table> -->
 <br><br>
 <jsp:include page="/WEB-INF/views/include/footer.jsp"/>
 </body>

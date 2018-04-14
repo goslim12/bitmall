@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="payment">
+<!--  	<select id="getByIdAndPassword" parameterType="recipientvo"
+		resultType="membervo">
+ 	 <![CDATA[
+	 	select no,
+	 		   id,
+	           name,
+	           birth,
+	           telephone,
+	           phone,
+	           zip,
+	           address,
+	           email
+	      from member 
+	 	 where password=password(#{password}) and id =#{id}
+ 	   ]]>
+	</select>  -->
+
+	<select id="getByNo" parameterType="long" resultType="paymentvo">
+ 	 <![CDATA[
+	 	select no,
+	 		   order_no as orderNo,
+	 	       price,
+	           way,
+	           approval,
+	           card_kind as cardKind,
+	           instalment,
+	           orderer,
+	           bank_kind as bankKind	 
+	      from payment 
+	 	 where no=#{no} 
+ 	   ]]>
+	</select> 
+	
+		<!-- <select id="getByEmail" parameterType="string" resultType="uservo">
+ 	 <![CDATA[
+	 	select no,
+	 		   name,
+	 	       email,
+	           gender	 
+	      from users 
+	 	 where email=#{email}
+ 	   ]]>
+	</select> -->
+	<!-- <select id="getList" resultType="uservo">
+ 	 <![CDATA[
+		select * from users
+ 	   ]]>
+	</select> -->
+<!--  <select id="getById" parameterType="long" resultType="membervo">
+ 	 <![CDATA[
+	 	select no,
+	 		   id,
+	 	       password,
+	           name,
+	           birth,
+	           telephone,
+	           phone,
+	           zip,
+	           address,
+	           email
+	      from member 
+	 	 where id=#{id} 
+ 	   ]]>
+	</select> -->
+	<insert id="insert" parameterType="paymentvo">
+	 	 <![CDATA[
+		insert into payment values (
+				null,
+				#{orderNo},
+				#{price},
+				#{way},
+				#{approval},
+				#{cardKind},
+				#{instalment},
+				#{orderer},
+				#{bankKind}
+				) 
+ 	   ]]>
+   		<selectKey keyProperty="no" resultType="long" order="AFTER">
+	   	 <![CDATA[ select last_insert_id()   ]]>
+		</selectKey>
+	</insert>
+
+
+	<!-- <update id="update" parameterType="uservo">
+	 	 <![CDATA[
+		update users 
+		set name =#{name}, 
+		gender =#{gender},]]>
+		<if test='password !=""'>
+			<![CDATA[
+			password = password(#{password})
+			 ]]>
+		</if>
+		 <![CDATA[
+		 where no = #{no}
+ 	 	  ]]>
+	</update> -->
+</mapper>

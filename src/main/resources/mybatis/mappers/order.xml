@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="order">
+<!--  	<select id="getByIdAndPassword" parameterType="recipientvo"
+		resultType="membervo">
+ 	 <![CDATA[
+	 	select no,
+	 		   id,
+	           name,
+	           birth,
+	           telephone,
+	           phone,
+	           zip,
+	           address,
+	           email
+	      from member 
+	 	 where password=password(#{password}) and id =#{id}
+ 	   ]]>
+	</select>  -->
+
+	<!-- <select id="getByNo" parameterType="long" resultType="uservo">
+ 	 <![CDATA[
+	 	select no,
+	 		   name,
+	 	       email,
+	           gender	 
+	      from users 
+	 	 where no=#{no} 
+ 	   ]]>
+	</select> -->
+	
+		<!-- <select id="getByEmail" parameterType="string" resultType="uservo">
+ 	 <![CDATA[
+	 	select no,
+	 		   name,
+	 	       email,
+	           gender	 
+	      from users 
+	 	 where email=#{email}
+ 	   ]]>
+	</select> -->
+	<select id="getListByMemNo" parameterType="long" resultType="ordervo">
+ 	 <![CDATA[
+		SELECT no,
+			   member_no as memberNo,
+			   recipient_no as recipientNo,
+			   payment_no as paymentNo,
+			   orderer_no as ordererNo
+		 FROM bitmall.`order` where member_no = #{no};
+ 	   ]]>
+	</select> 
+	
+		<select id="getByNo" parameterType="long" resultType="ordervo">
+ 	 <![CDATA[
+		SELECT no,
+			   member_no as memberNo,
+			   recipient_no as recipientNo,
+			   payment_no as paymentNo,
+			   orderer_no as ordererNo
+		 FROM bitmall.`order` where no = #{no};
+ 	   ]]>
+	</select> 
+<!--  <select id="getById" parameterType="long" resultType="membervo">
+ 	 <![CDATA[
+	 	select no,
+	 		   id,
+	 	       password,
+	           name,
+	           birth,
+	           telephone,
+	           phone,
+	           zip,
+	           address,
+	           email
+	      from member 
+	 	 where id=#{id} 
+ 	   ]]>
+	</select> -->
+	<insert id="insert" parameterType="ordervo">
+	 	 <![CDATA[
+		insert into bitmall.`order` 
+		values (
+				null,
+				#{memberNo},
+				#{recipientNo},
+				#{paymentNo},
+				#{ordererNo}
+				) 
+ 	   ]]>
+   		<selectKey keyProperty="no" resultType="long" order="AFTER">
+	   	 <![CDATA[ select last_insert_id()   ]]>
+		</selectKey>
+	</insert>
+
+
+	<!-- <update id="update" parameterType="uservo">
+	 	 <![CDATA[
+		update users 
+		set name =#{name}, 
+		gender =#{gender},]]>
+		<if test='password !=""'>
+			<![CDATA[
+			password = password(#{password})
+			 ]]>
+		</if>
+		 <![CDATA[
+		 where no = #{no}
+ 	 	  ]]>
+	</update> -->
+</mapper>

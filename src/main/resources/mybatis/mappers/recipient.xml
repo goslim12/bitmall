@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="recipient">
+<!--  	<select id="getByIdAndPassword" parameterType="recipientvo"
+		resultType="membervo">
+ 	 <![CDATA[
+	 	select no,
+	 		   id,
+	           name,
+	           birth,
+	           telephone,
+	           phone,
+	           zip,
+	           address,
+	           email
+	      from member 
+	 	 where password=password(#{password}) and id =#{id}
+ 	   ]]>
+	</select>  -->
+	<select id="getByNo" parameterType="long" resultType="recipientvo">
+ 	 <![CDATA[
+	 	select no,
+	 		   name,
+	 	       telephone,
+	           phone,
+	           email,
+	           zip,
+	           address,
+	           requirement	 
+	      from recipient 
+	 	 where no=#{no} 
+ 	   ]]>
+	</select> 
+	<!-- <select id="getByNo" parameterType="long" resultType="uservo">
+ 	 <![CDATA[
+	 	select no,
+	 		   name,
+	 	       email,
+	           gender	 
+	      from users 
+	 	 where no=#{no} 
+ 	   ]]>
+	</select> -->
+	
+		<!-- <select id="getByEmail" parameterType="string" resultType="uservo">
+ 	 <![CDATA[
+	 	select no,
+	 		   name,
+	 	       email,
+	           gender	 
+	      from users 
+	 	 where email=#{email}
+ 	   ]]>
+	</select> -->
+	<!-- <select id="getList" resultType="uservo">
+ 	 <![CDATA[
+		select * from users
+ 	   ]]>
+	</select> -->
+<!--  <select id="getById" parameterType="long" resultType="membervo">
+ 	 <![CDATA[
+	 	select no,
+	 		   id,
+	 	       password,
+	           name,
+	           birth,
+	           telephone,
+	           phone,
+	           zip,
+	           address,
+	           email
+	      from member 
+	 	 where id=#{id} 
+ 	   ]]>
+	</select> -->
+	<insert id="insert" parameterType="recipientvo">
+	 	 <![CDATA[
+		insert into recipient values (
+				null,
+				#{name},
+				#{telephone},
+				#{phone},
+				#{email},
+				#{zip},
+				#{address},
+				#{requirement}
+				) 
+ 	   ]]>
+   		<selectKey keyProperty="no" resultType="long" order="AFTER">
+	   	 <![CDATA[ select last_insert_id()   ]]>
+		</selectKey>
+	</insert>
+
+
+	<!-- <update id="update" parameterType="uservo">
+	 	 <![CDATA[
+		update users 
+		set name =#{name}, 
+		gender =#{gender},]]>
+		<if test='password !=""'>
+			<![CDATA[
+			password = password(#{password})
+			 ]]>
+		</if>
+		 <![CDATA[
+		 where no = #{no}
+ 	 	  ]]>
+	</update> -->
+</mapper>

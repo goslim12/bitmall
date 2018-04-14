@@ -7,6 +7,78 @@
 	<title>비트닷컴 쇼핑몰</title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<link href="${pageContext.servletContext.contextPath }/assets/css/font.css" rel="stylesheet" type="text/css">
+<script src="${pageContext.servletContext.contextPath}/assets/js/jquery/jquery-1.9.0.js" type="text/javascript"></script>
+<script language = "javascript">
+/* function check_id213123t() 
+{
+	$("input[name=id]").val(${vo.id});
+	$("input[name=name]").val(${vo.name});
+	$("input[name=birthday1]").val(${birthday1});
+	$("input[name=birthday2]").val(${birthday2});
+	$("input[name=birthday3]").val(${birthday3});
+	$("input[name=tel1]").val(${tel1});
+	$("input[name=tel2]").val(${tel2});
+	$("input[name=tel3]").val(${tel3});
+	$("input[name=phone1]").val(${phone1});
+	$("input[name=phone2]").val(${phone2});
+	$("input[name=phone3]").val(${phone3});
+	$("input[name=zip1]").val(${zip1});
+	$("input[name=zip2]").val(${zip2});
+	$("input[name=address]").val(${vo.address});
+	$("input[name=email]").val(${vo.email});
+	console.log("수정 호출");
+	console.log("수정 호출");
+	console.log("수정 호출");
+	console.log("수정 호출");
+	console.log("수정 호출");
+}; */
+function check_id() 
+{
+	console.log("중복 호출");
+	console.log("중복 호출");
+	console.log("중복 호출");
+	console.log("중복 호출");
+	console.log("중복 호출");
+	console.log("중복 호출");
+	console.log("중복 호출");
+	var id = $("input[name=id]").val();
+		$.ajax({
+		url : "${pageContext.servletContext.contextPath}/api/user/checkid", //요청할 URL
+		dataType : "json", //응답받을 데이터타입
+		type : "get", //요청 방식
+		data :  {
+			"id" : id,
+		}, //서버에 요청시 보낼 파라미터 ex) {name:홍길동}
+		success : function(response) { //요청 및 응답에 성공했을 경우
+				if (response.result != "success") {
+				console.log(respone.message);
+				return;
+			}
+			if (response.data == "exist") {
+				alert("이미 사용 중인 아이디 입니다.");
+				$("input[name=id]").val("").focus();
+				return;
+			}
+	
+			if (response.data == "not exist") {
+				alert("사용 가능한 아이디 입니다!");
+				$("input[name=password1]").focus();
+				$("#btn-check").hide();
+				$("#img-check").show(); 
+				return;
+			}
+
+		},
+		error : function(xhr, status, e) { //요청 및 응답에 실패 한 경우
+			console.error(status + ":" + e);
+
+		}
+	});  
+};
+
+
+</script>
+
 </head>
 <body style="margin:0">
 <jsp:include page="/WEB-INF/views/include/head.jsp"/>
@@ -54,7 +126,10 @@
 											</td>
 											<td>
 												<input type="text" name="id" maxlength = "12" value="${vo.id }" size="20" class="cmfont1"> 
-												<a href="javascript:check_id();"><img align="absmiddle" src="${pageContext.servletContext.contextPath }/assets/images/b_idcheck.gif" border="0"></a>
+												<a href="javascript:check_id();">
+												<img id="btn-check" align="absmiddle" src="${pageContext.servletContext.contextPath }/assets/images/b_idcheck.gif" border="0">
+												<img id='img-check' style="display: none" src="${pageContext.servletContext.contextPath}/assets/images/check.png" />		
+												</a>
 											</td>
 										</tr>
 										<tr>

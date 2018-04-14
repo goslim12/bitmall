@@ -7,6 +7,45 @@
 	<title>비트닷컴 쇼핑몰</title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<link href="${pageContext.servletContext.contextPath }/assets/css/font.css" rel="stylesheet" type="text/css">
+<script src="${pageContext.servletContext.contextPath}/assets/js/jquery/jquery-1.9.0.js" type="text/javascript"></script>
+<script language = "javascript">
+	function check_id() 
+	{
+		var id = $("input[name=id]").val();
+  		$.ajax({
+			url : "${pageContext.servletContext.contextPath}/api/user/checkid", //요청할 URL
+			dataType : "json", //응답받을 데이터타입
+			type : "get", //요청 방식
+			data :  {
+				"id" : id,
+			}, //서버에 요청시 보낼 파라미터 ex) {name:홍길동}
+			success : function(response) { //요청 및 응답에 성공했을 경우
+ 				if (response.result != "success") {
+					console.log(respone.message);
+					return;
+				}
+				if (response.data == "exist") {
+					alert("이미 사용 중인 아이디 입니다.");
+					$("input[name=id]").val("").focus();
+					return;
+				}
+		
+				if (response.data == "not exist") {
+					alert("사용 가능한 아이디 입니다!");
+					$("input[name=password1]").focus();
+					$("#btn-check").hide();
+					$("#img-check").show(); 
+					return;
+				}
+
+			},
+			error : function(xhr, status, e) { //요청 및 응답에 실패 한 경우
+				console.error(status + ":" + e);
+
+			}
+		});  
+	}
+</script>
 </head>
 <body style="margin:0">
 <jsp:include page="/WEB-INF/views/include/head.jsp"/>
@@ -54,7 +93,10 @@
 											</td>
 											<td>
 												<input type="text" name="id" maxlength = "12" value="wzm2" size="20" class="cmfont1"> 
-												<a href="javascript:check_id();"><img align="absmiddle" src="${pageContext.servletContext.contextPath }/assets/images/b_idcheck.gif" border="0"></a>
+												<a href="javascript:check_id();">
+												<img id="btn-check" align="absmiddle" src="${pageContext.servletContext.contextPath }/assets/images/b_idcheck.gif" border="0">
+												<img id='img-check' style="display: none" src="${pageContext.servletContext.contextPath}/assets/images/check.png" />
+												</a>
 											</td>
 										</tr>
 										<tr>
@@ -67,7 +109,7 @@
 										</tr>
 										<tr>
 											<td width="127" height="30">
-												<img align="absmiddle" src="${pageContext.servletContext.contextPath }/assets/images/i_dot.gif" border="0"> <font color="898989"><b>비밀번호 확인</b></font>
+											    <img align="absmiddle" src="${pageContext.servletContext.contextPath }/assets/images/i_dot.gif" border="0"><font color="898989"><b>비밀번호 확인</b></font>
 											</td>
 											<td>
 												<input TYPE="password" name="password2" maxlength = "10" size="20" class="cmfont1">

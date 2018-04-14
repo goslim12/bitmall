@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cart">
+	 	<select id="getListByMemberNo" resultType="cartvo">
+ 	 <![CDATA[
+	 	select product_no as productNo,
+	 		   member_no as memberNo,
+	 		   count
+	      from cart 
+	      where member_no = #{memberNo}
+ 	   ]]>
+	</select>
+	 	<select id="getByMemberNoAndProductNo" parameterType= "cartvo" 
+	 	resultType="cartvo">
+ 	 <![CDATA[
+	 	select product_no as productNo,
+	 		   member_no as memberNo,
+	 		   count
+	      from cart 
+	      where member_no = #{memberNo} and product_no = #{productNo}
+ 	   ]]>
+	</select>
+	<insert id="insert" parameterType="productvo">
+	 	 <![CDATA[
+		insert into cart values (#{productNo},#{memberNo},#{count})
+ 	   ]]>
+	</insert> 
+
+		<update id="modifyCount" parameterType="cartvo">
+	 	 <![CDATA[
+		UPDATE cart
+		SET count = #{count}
+		WHERE product_no = #{productNo} and member_no=#{memberNo};
+ 	   ]]>
+	</update> 
+	<delete id="delete" parameterType="productvo">
+	 	 <![CDATA[
+		delete 
+		from cart 
+		where product_no=#{productNo} 
+		      and member_no=#{memberNo} 
+		      and count=#{count}
+ 	   ]]>
+	</delete> 
+	<delete id="allDeleteByMemberNo" parameterType="long">
+	 	 <![CDATA[
+		delete 
+		from cart 
+		where member_no=#{no} 
+ 	   ]]>
+	</delete> 
+		<!-- <select id="getByEmail" parameterType="string" resultType="uservo">
+ 	 <![CDATA[
+	 	select no,
+	 		   name,
+	 	       email,
+	           gender	 
+	      from users 
+	 	 where email=#{email}
+ 	   ]]>
+	</select> -->
+	<!-- <select id="getList" resultType="uservo">
+ 	 <![CDATA[
+		select * from users
+ 	   ]]>
+	</select> -->
+ <!-- <select id="getById" parameterType="long" resultType="membervo">
+ 	 <![CDATA[
+	 	select no,
+	 		   id,
+	 	       password,
+	           name,
+	           birth,
+	           telephone,
+	           phone,
+	           zip,
+	           address,
+	           email
+	      from member 
+	 	 where id=#{id} 
+ 	   ]]>
+	</select>-->
+
+
+
+	<!-- <update id="update" parameterType="uservo">
+	 	 <![CDATA[
+		update users 
+		set name =#{name}, 
+		gender =#{gender},]]>
+		<if test='password !=""'>
+			<![CDATA[
+			password = password(#{password})
+			 ]]>
+		</if>
+		 <![CDATA[
+		 where no = #{no}
+ 	 	  ]]>
+	</update> -->
+</mapper>
