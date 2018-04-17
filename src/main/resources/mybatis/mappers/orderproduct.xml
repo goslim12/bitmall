@@ -12,6 +12,7 @@
 	      where order_no = #{no}
  	   ]]> 
 	</select> 
+	
 	<!--  	<select id="getListByCategoryNo" resultType="productvo">
  	 <![CDATA[
 	 	select no,
@@ -32,11 +33,17 @@
 	 	 where no=#{no} 
  	   ]]>
 	</select>  -->
-		<insert id="insert" parameterType="orderproductvo">
+	<insert id="insert" parameterType="orderproductvo">
 	 	 <![CDATA[
 		insert into order_product values (#{orderNo},#{productNo},#{count},#{price})
  	   ]]>
 	</insert> 
+	<delete id="delete" parameterType="long">
+	 	 <![CDATA[
+		DELETE FROM order_product
+		WHERE order_no=#{no};
+ 	   ]]>
+	</delete>
 		<!-- <select id="getByEmail" parameterType="string" resultType="uservo">
  	 <![CDATA[
 	 	select no,

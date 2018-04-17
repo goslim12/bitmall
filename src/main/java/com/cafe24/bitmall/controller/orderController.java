@@ -186,7 +186,7 @@ public class orderController {
 		paymentVo.setInstalment(card_halbu);
 		paymentVo.setOrderer(o_name);
 		paymentVo.setBankKind(bank_kind);
-
+		paymentVo.setState("주문신청");
 
 		
 		PaymentService.add(paymentVo);

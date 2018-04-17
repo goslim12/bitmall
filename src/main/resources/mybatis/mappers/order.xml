@@ -47,10 +47,19 @@
 			   recipient_no as recipientNo,
 			   payment_no as paymentNo,
 			   orderer_no as ordererNo
-		 FROM bitmall.`order` where member_no = #{no};
+		 FROM bitmall.`order` where member_no = #{no}
  	   ]]>
 	</select> 
-	
+		<select id="getList" parameterType="long" resultType="ordervo">
+ 	 <![CDATA[
+		SELECT no,
+			   member_no as memberNo,
+			   recipient_no as recipientNo,
+			   payment_no as paymentNo,
+			   orderer_no as ordererNo
+		 FROM bitmall.`order`
+ 	   ]]>
+	</select> 
 		<select id="getByNo" parameterType="long" resultType="ordervo">
  	 <![CDATA[
 		SELECT no,
@@ -93,7 +102,12 @@
 		</selectKey>
 	</insert>
 
-
+	<delete id="delete" parameterType="long">
+	 	 <![CDATA[
+		DELETE FROM bitmall.`order` 
+		WHERE no=#{no};
+ 	   ]]>
+	</delete>
 	<!-- <update id="update" parameterType="uservo">
 	 	 <![CDATA[
 		update users 

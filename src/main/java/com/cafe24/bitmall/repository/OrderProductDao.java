@@ -20,6 +20,9 @@ public class OrderProductDao {
 		return sqlSession.insert("orderproduct.insert",vo);
 
 	}
+	public int delete(Long no) {
+		return sqlSession.delete("orderproduct.delete",no);
+	}
 //	public List<MemberVo> getList(){
 //		return null;
 //	}

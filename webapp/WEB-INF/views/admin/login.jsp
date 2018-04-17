@@ -12,7 +12,7 @@
 <br><br><br><br><br><br><br><br><br><br>
 <input type="hidden" name="no" value="${authUser.no}">
 
-<form name="form1" action="${pageContext.servletContext.contextPath }/admin/ad/product" method="post">
+<form name="form1" action="${pageContext.servletContext.contextPath }/admin/ad/login" method="post">
 
 <table  bordercolor="purple" border width='330' cellpadding='4' cellspacing='0'>
 	<tr>

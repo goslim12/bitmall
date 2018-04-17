@@ -17,9 +17,15 @@ public class PaymentDao {
 	public int insert(PaymentVo vo) {
 		return sqlSession.insert("payment.insert",vo);
 	}
+	public int delete(Long no) {
+		return sqlSession.delete("payment.delete",no);
+	}
 //	public List<MemberVo> getList(){
 //		return null;
 //	}
+	public int updateState(PaymentVo vo) {
+		return sqlSession.update("payment.updateSate",vo);
+	}
 	public PaymentVo get(Long no){
 		return sqlSession.selectOne("payment.getByNo",no);
 	}

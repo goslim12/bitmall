@@ -133,11 +133,11 @@
 						success : function(response) { //요청 및 응답에 성공했을 경우
 								if (response.result == "success") {
 									alert(response.message);
-									totalPrice();
-/* 									$("tr[name='cartRow']").each(function(){
+ 									$("tr[name='cartRow']").each(function(){
 										$(this).remove();
 									});
-									$("td[name=sumPrice]").text('');
+									totalPrice();
+									/*									$("td[name=sumPrice]").text('');
 									$("#sumPrice").html('<font color="#0066CC"><b >총 합계금액</b></font> 0원<font color="#FF3333"><b></b></font>&nbsp;&nbsp');
  */								}
 	
@@ -204,7 +204,7 @@
 						<table cellpadding="0" cellspacing="0" width="100%">
 							<tr>
 								<td width="60">
-									<a href="product/product_detail?no=${map[vo.productNo].no}"><img src="${pageContext.servletContext.contextPath }/assets/images/product/${vo.productNo}.jpg" width="50" height="50" border="0"></a>
+									<a href="product/product_detail?no=${map[vo.productNo].no}"><img src="${pageContext.servletContext.contextPath }/uploads/images/${map[vo.productNo].path}" width="50" height="50" border="0"></a>
 								</td>
 								<td class="cmfont">
 									<a href="product/product_detail?no=${map[vo.productNo].no}">${map[vo.productNo].title}</a><br>

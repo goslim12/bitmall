@@ -19,6 +19,37 @@
  	   ]]>
 	</select> 
 
+ 	<select id="getList" parameterType="membervo"
+		resultType="membervo">
+ 	 <![CDATA[
+	 	select no,
+	 		   id,
+	           name,
+	           birth,
+	           telephone,
+	           phone,
+	           zip,
+	           address,
+	           email
+	      from member 
+ 	   ]]>
+	</select> 
+	 	<select id="getByNo" parameterType="long"
+		resultType="membervo">
+ 	 <![CDATA[
+	 	select no,
+	 		   id,
+	           name,
+	           birth,
+	           telephone,
+	           phone,
+	           zip,
+	           address,
+	           email
+	      from member 
+	      where no = #{no}
+ 	   ]]>
+	</select> 
 	<!-- <select id="getByNo" parameterType="long" resultType="uservo">
  	 <![CDATA[
 	 	select no,
@@ -45,7 +76,7 @@
 		select * from users
  	   ]]>
 	</select> -->
- <select id="getById" parameterType="long" resultType="membervo">
+ 	<select id="getById" parameterType="long" resultType="membervo">
  	 <![CDATA[
 	 	select no,
 	 		   id,
@@ -66,6 +97,27 @@
 		insert into member values (null,#{id},password(#{password}),#{name},#{birth},#{telephone},#{phone},#{zip},#{address},#{email}) 
  	   ]]>
 	</insert>
+	<delete id="delete" parameterType="membervo">
+	 	 <![CDATA[
+			DELETE FROM member
+			WHERE no=#{no};
+ 	   ]]>
+	</delete>
+	<update id="update" parameterType="membervo">
+	 	 <![CDATA[
+	update  member 
+	SET 	id=#{id},
+			password=password(#{password}),
+			name=#{name},
+			birth=#{birth},
+			telephone=#{telephone},
+			phone=#{phone},
+			zip=#{zip},
+			address=#{address},
+			email=#{email}
+	WHERE 	no=#{no}
+	   ]]>
+	</update>
 
 
 	<!-- <update id="update" parameterType="uservo">

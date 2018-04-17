@@ -51,7 +51,7 @@
 						<table border="0" cellpadding="0" cellspacing="1" width="315" height="315" bgcolor="D4D0C8">
 							<tr>
 								<td bgcolor="white" align="center">
-									<img src="${pageContext.servletContext.contextPath }/assets/images/product/${vo.no}.jpg" height="315" border="0" align="absmiddle" ONCLICK="Zoomimage('0000')" STYLE="cursor:hand">
+									<img src="${pageContext.servletContext.contextPath }/uploads/images/${vo.path}" height="315" border="0" align="absmiddle" ONCLICK="Zoomimage('0000')" STYLE="cursor:hand">
 								</td>
 							</tr>
 						</table>

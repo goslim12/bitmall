@@ -7,6 +7,33 @@
 	<title>쇼핑몰 관리자 홈페이지</title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<link href="${pageContext.servletContext.contextPath }/assets/css/font.css" rel="stylesheet" type="text/css">
+<script src="${pageContext.servletContext.contextPath}/assets/js/jquery/jquery-1.9.0.js" type="text/javascript"></script>
+<script language = "javascript">
+$(function(){
+	 $(".link-delete").click(function(event){
+		/*closest 는 가장가까운 부모 요소 , find 자식요소들중에서 찾기*/
+		/*event.preventDefault();*/
+		var $row = $(this);
+		var no  = $(this).data("no");
+		if(no==null)
+			return;
+		
+ 		$.ajax({
+			url : "${pageContext.servletContext.contextPath}/api/member/delete", //요청할 URL
+			dataType : "json", //응답받을 데이터타입
+			type : "post", //요청 방식
+			data : {"no" : no}, //서버에 요청시 보낼 파라미터 ex) {name:홍길동}
+			success : function(response) { //요청 및 응답에 성공했을 경우
+				console.log(response);
+				$row.closest("tr").remove();
+			},
+			error : function(xhr, status, e) { //요청 및 응답에 실패 한 경우
+				console.error(status + ":" + e);
+			}
+		});  
+	}); 
+});
+</script>
 </head>
 <body bgcolor="white" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <input type="hidden" name="no" value="${authUser.no}">
@@ -16,7 +43,7 @@
 <table width="800" border="0" cellspacing="0" cellpadding="0">
 	<form name="form1" method="get" action="">
 	<tr height="40">
-		<td width="200" valign="bottom">&nbsp 회원수 : <font color="#FF0000">20</font></td>
+		<td width="200" valign="bottom">&nbsp 회원수 : <font color="#FF0000">${count}</font></td>
 		<td width="200">&nbsp</td>
 		<td width="350" align="right" valign="bottom">
 			<select name="sel1" class="combo1">
@@ -44,7 +71,7 @@
 	</tr>
 	
 	
-	<tr bgcolor="#F2F2F2" height="23">	
+	<!-- <tr bgcolor="#F2F2F2" height="23">	
 		<td width="100">&nbsp id1</td>	
 		<td width="100">&nbsp 홍길동</td>	
 		<td width="100">&nbsp 02 -123-1234</td>	
@@ -55,20 +82,20 @@
 			<a href="#">수정</a>/
 			<a href="#">삭제</a>
 		</td>
-	</tr>
+	</tr> -->
 	
 	<c:forEach var="vo" items="${list }" varStatus="status">
 	
 	<tr bgcolor="#F2F2F2" height="23">	
 		<td width="100">&nbsp ${vo.id }</td>	
 		<td width="100">&nbsp ${vo.name }</td>	
-		<td width="100">&nbsp ${vo.phone_number }</td>	
-		<td width="100">&nbsp ${vo.handphone }</td>	
+		<td width="100">&nbsp ${vo.telephone}</td>	
+		<td width="100">&nbsp ${vo.phone}</td>	
 		<td width="200">&nbsp ${vo.email }</td>	
-		<td width="100" align="center">${vo.type }</td>	
+		<td width="100" align="center">회원</td>	
 		<td width="100" align="center">
-			<a href="#">수정</a>/
-			<a href="#">삭제</a>
+			<a href="${pageContext.servletContext.contextPath }/admin/ad/member_modify?no=${vo.no}">수정</a>/
+			<a class="link-delete" data-no="${vo.no}" style="cursor:pointer">삭제</a>
 		</td>
 	</tr>
 	</c:forEach>

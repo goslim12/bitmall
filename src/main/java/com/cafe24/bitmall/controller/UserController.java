@@ -101,4 +101,6 @@ public class UserController {
 		model.addAttribute("vo",authUser);
 		return "user/member_modify";
 	}
+	
+
 }

@@ -16,8 +16,17 @@ public class MemberService {
 	public void join(MemberVo vo) {
 		memberDao.insert(vo);
 	}
+	public int modify(MemberVo vo) {
+		return memberDao.update(vo);
+	}
+	public int delete(Long no) {
+		return memberDao.delete(no);
+	}
 	public MemberVo getMember(MemberVo vo) {
 		return 	memberDao.get(vo);
+	}
+	public MemberVo getByNo(Long no) {
+		return 	memberDao.getByNo(no);
 	}
 	public List<MemberVo> getList() {
 		return 	memberDao.getList();

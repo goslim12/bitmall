@@ -71,7 +71,7 @@ public class JumunController {
 			jumunList[i].setDate(date.substring(0,4)+"-"+date.substring(4,6)+"-"+date.substring(6,8));
 			jumunList[i].setOrderNo(orderNo);
 			jumunList[i].setPrice(price);
-			jumunList[i].setState("주문신청");
+//			jumunList[i].setState(tmp.getState());
 			jumunList[i].setOrderKeyNo(orderVo.getNo());
 		}
 		Arrays.sort(jumunList);//역정렬

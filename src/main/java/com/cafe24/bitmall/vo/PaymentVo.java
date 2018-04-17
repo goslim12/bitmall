@@ -10,6 +10,8 @@ public class PaymentVo {
 	private String instalment;
 	private String orderer;
 	private String bankKind;
+	private String state;
+	
 	public Long getNo() {
 		return no;
 	}
@@ -64,11 +66,17 @@ public class PaymentVo {
 	public void setBankKind(String bankKind) {
 		this.bankKind = bankKind;
 	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
 	@Override
 	public String toString() {
 		return "PaymentVo [no=" + no + ", orderNo=" + orderNo + ", price=" + price + ", way=" + way + ", approval="
 				+ approval + ", cardKind=" + cardKind + ", instalment=" + instalment + ", orderer=" + orderer
-				+ ", bankKind=" + bankKind + "]";
+				+ ", bankKind=" + bankKind + ", state=" + state + "]";
 	}
 	
 }

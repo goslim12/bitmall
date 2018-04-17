@@ -7,6 +7,33 @@
 	<title>쇼핑몰 관리자 홈페이지</title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<link href="${pageContext.servletContext.contextPath }/assets/css/font.css" rel="stylesheet" type="text/css">
+<script src="${pageContext.servletContext.contextPath}/assets/js/jquery/jquery-1.9.0.js" type="text/javascript"></script>
+<script language = "javascript">
+$(function(){
+	 $(".link-delete").click(function(){
+		/*closest 는 가장가까운 부모 요소 , find 자식요소들중에서 찾기*/
+		/*event.preventDefault();*/
+		var $row = $(this);
+		var no  = $(this).data("no");
+		if(no==null)
+			return;
+		
+		$.ajax({
+			url : "${pageContext.servletContext.contextPath}/api/product/delete", //요청할 URL
+			dataType : "json", //응답받을 데이터타입
+			type : "post", //요청 방식
+			data : {"no" : no}, //서버에 요청시 보낼 파라미터 ex) {name:홍길동}
+			success : function(response) { //요청 및 응답에 성공했을 경우
+				console.log(response);
+				$row.closest("tr").remove();
+			},
+			error : function(xhr, status, e) { //요청 및 응답에 실패 한 경우
+				console.error(status + ":" + e);
+			}
+		});  
+	}); 
+});
+</script>
 </head>
 <body bgcolor="white" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <br>
@@ -54,38 +81,23 @@
 <table width="800" border="1" cellspacing="0" bordercolordark="white" bordercolorlight="black">
 	<tr bgcolor="#CCCCCC" height="23"> 
 		<td width="100" align="center">제품분류</td>
-		<td width="100" align="center">제품코드</td>
 		<td width="280" align="center">제품명</td>
 		<td width="70"  align="center">판매가</td>
 		<td width="50"  align="center">상태</td>
-		<td width="120" align="center">이벤트</td>
 		<td width="80"  align="center">수정/삭제</td>
 	</tr>
-	
+	<c:forEach var="vo" items="${list }" varStatus="status">
 	<tr bgcolor="#F2F2F2" height="23">	
-		<td width="100">&nbsp 코트</td>
-		<td width="100">&nbsp Coat001</td>
-		<td width="280">&nbsp 비싼 코트</td>	
-		<td width="70"  align="right">4,500,000 &nbsp</td>	
+		<td width="100">&nbsp ${map[vo.no].name }</td>
+		<td width="280">&nbsp ${vo.title}</td>	
+		<td width="70"  align="right">${vo.price} &nbsp</td>	
 		<td width="50"  align="center">판매중</td>	
-		<td width="120" align="center">&nbsp New Hit Sale(10%)</td>	
 		<td width="80"  align="center">
-			<a href="product_edit.jsp">수정</a>/
-			<a href="#">삭제</a>
+			<a href="product_edit?no=${vo.no}">수정</a>/
+			<a class="link-delete" data-no="${vo.no}" style="cursor:pointer">삭제</a>
 		</td>
 	</tr>
-	<tr bgcolor="#F2F2F2" height="23">	
-		<td width="100">&nbsp 코트</td>
-		<td width="100">&nbsp Coat001</td>
-		<td width="280">&nbsp 비싼 코트</td>	
-		<td width="70"  align="right">4,500,000 &nbsp</td>	
-		<td width="50"  align="center">판매중</td>	
-		<td width="120" align="center">&nbsp New Hit Sale(10%)</td>	
-		<td width="80"  align="center">
-			<a href="product_edit.jsp">수정</a>/
-			<a href="#">삭제</a>
-		</td>
-	</tr>	
+	</c:forEach>
 </table>
 
 <br>

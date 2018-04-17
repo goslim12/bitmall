@@ -16,7 +16,9 @@ public class RecipientDao {
 	
 	public int insert(RecipientVo vo) {
 		return sqlSession.insert("recipient.insert",vo);
-
+	}
+	public int delete(Long no) {
+		return sqlSession.delete("recipient.delete",no);
 	}
 //	public List<MemberVo> getList(){
 //		return null;

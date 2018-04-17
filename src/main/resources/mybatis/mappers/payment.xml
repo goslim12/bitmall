@@ -29,7 +29,8 @@
 	           card_kind as cardKind,
 	           instalment,
 	           orderer,
-	           bank_kind as bankKind	 
+	           bank_kind as bankKind,
+	           state
 	      from payment 
 	 	 where no=#{no} 
  	   ]]>
@@ -77,7 +78,8 @@
 				#{cardKind},
 				#{instalment},
 				#{orderer},
-				#{bankKind}
+				#{bankKind},
+				#{state}
 				) 
  	   ]]>
    		<selectKey keyProperty="no" resultType="long" order="AFTER">
@@ -85,7 +87,19 @@
 		</selectKey>
 	</insert>
 
-
+	<update id="updateSate" parameterType="paymentvo">
+	 	 <![CDATA[
+		update payment 
+	 	SET state = #{state}
+		WHERE no = #{no};	
+ 	   ]]>
+	</update>
+	<delete id="delete" parameterType="long">
+	 	 <![CDATA[
+		DELETE FROM payment 
+		WHERE no=#{no};
+ 	   ]]>
+	</delete>
 	<!-- <update id="update" parameterType="uservo">
 	 	 <![CDATA[
 		update users 

@@ -11,11 +11,17 @@ public class PaymentService {
 	@Autowired
 	private PaymentDao paymentDao;
 	
-	public void add(PaymentVo vo) {
-		paymentDao.insert(vo);
+	public int add(PaymentVo vo) {
+		return paymentDao.insert(vo);
+	}
+	public int delete(Long no) {
+		return paymentDao.delete(no);
 	}
 	public PaymentVo get(Long no) {
 		return 	paymentDao.get(no);
+	}
+	public int updateState(PaymentVo vo) {
+		return 	paymentDao.updateState(vo);
 	}
 //	public List<ProductVo> getList() {
 //		return 	paymentDao.getList();

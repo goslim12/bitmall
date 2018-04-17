@@ -18,7 +18,12 @@
 	 	 where password=password(#{password}) and id =#{id}
  	   ]]>
 	</select>  -->
-
+	<delete id="delete" parameterType="long">
+	 	 <![CDATA[
+		DELETE FROM orderer 
+		WHERE no=#{no};
+ 	   ]]>
+	</delete>
 	 <select id="getByNo" parameterType="long" resultType="orderervo">
  	 <![CDATA[
 	 	select no,

@@ -52,7 +52,7 @@
 			<c:forEach items="${orderProductVoList}" var="vo" varStatus="status">
 				<tr>
 					<td width="60">
-						<a href="${pageContext.servletContext.contextPath }/product/product_detail?no=${map[vo.productNo].no}"><img src="${pageContext.servletContext.contextPath }/assets/images/product/${vo.productNo}.jpg" width="50" height="50" border="0"></a>
+						<a href="${pageContext.servletContext.contextPath }/product/product_detail?no=${map[vo.productNo].no}"><img src="${pageContext.servletContext.contextPath }/uploads/images/${map[vo.productNo].path}" width="50" height="50" border="0"></a>
 					</td>
 					<td height="52">
 						<a href="${pageContext.servletContext.contextPath }/product/product_detail?no=${map[vo.productNo].no}"><font color="686868">${map[vo.productNo].title}</font><br><font color="#0066CC"></font></a>

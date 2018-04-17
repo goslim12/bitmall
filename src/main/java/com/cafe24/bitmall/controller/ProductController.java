@@ -24,7 +24,7 @@ public class ProductController {
 	public String anchovy(	
 			Model model,
 			@PathVariable("path1") Long path1) {
-		List<ProductVo> list = productService.getListByCategoryNo(path1);
+		List<ProductVo> list = productService.getListByCategoryNoAndDelete(path1);
 		model.addAttribute("list",list);
 		return "product/index";
 	}	

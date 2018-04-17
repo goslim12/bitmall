@@ -7,6 +7,33 @@
 	<title>쇼핑몰 관리자 홈페이지</title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<link href="${pageContext.servletContext.contextPath }/assets/css/font.css" rel="stylesheet" type="text/css">
+<script src="${pageContext.servletContext.contextPath}/assets/js/jquery/jquery-1.9.0.js" type="text/javascript"></script>
+<script language = "javascript">
+$(function(){
+	 $(".link-delete").click(function(){
+		/*closest 는 가장가까운 부모 요소 , find 자식요소들중에서 찾기*/
+		/*event.preventDefault();*/
+		var $row = $(this);
+		var no  = $(this).data("no");
+		if(no==null)
+			return;
+		
+		$.ajax({
+			url : "${pageContext.servletContext.contextPath}/api/jumun/delete", //요청할 URL
+			dataType : "json", //응답받을 데이터타입
+			type : "post", //요청 방식
+			data : {"no" : no}, //서버에 요청시 보낼 파라미터 ex) {name:홍길동}
+			success : function(response) { //요청 및 응답에 성공했을 경우
+				console.log(response);
+				$row.closest("tr").remove();
+			},
+			error : function(xhr, status, e) { //요청 및 응답에 실패 한 경우
+				console.error(status + ":" + e);
+			}
+		});  
+	}); 
+});
+</script>
 </head>
 <body bgcolor="white" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <br>
@@ -15,7 +42,7 @@
 <form name="form1" method="get" action="">
 <table width="800" border="0" cellspacing="0" cellpadding="0">
 	<tr height="40">
-		<td align="left"  width="100" valign="bottom">&nbsp 주문수 : <font color="#FF0000">20</font></td>
+		<td align="left"  width="100" valign="bottom">&nbsp 주문수 : <font color="#FF0000">${count}</font></td>
 		<td align="right" width="650" valign="bottom">
 			기간 : 
 			<input type="text" name="day1_y" size="4" value="2008">
@@ -146,85 +173,86 @@
 		<td width="40"  align="center">제품수</td>	
 		<td width="70"  align="center">총금액</td>
     <td width="65"  align="center">주문자</td>
-		<td width="50"  align="center">결재</td>
+		<td width="50"  align="center">결제</td>
     <td width="135" align="center">주문상태</td>
     <td width="50"  align="center">삭제</td>
 	</tr>
-	<tr bgcolor="#F2F2F2" height="23">
-		<form method="post" action=""> 
-		<td width="70"  align="center"><a href="jumun_info.jsp?no=0803050004">0803050004</a></td>
-		<td width="70"  align="center">2008-03-05</td>
-		<td width="250" align="left">&nbsp;파란 브라우스 외 1</td>	
-		<td width="40" align="center">2</td>	
-		<td width="70"  align="right">35,000&nbsp</td>	
-		<td width="65"  align="center">홍길동</td>	
-		<td width="50"  align="center">카드</td>	
-		<td width="135" align="center" valign="bottom">
-			<select name="state" style="font-size:9pt; color:black">
-				<option value="1" selected>주문신청</option>
-				<option value="2">주문확인</option>
-				<option value="3">입금확인</option>
-				<option value="4">배송중</option>
-				<option value="5">주문완료</option>
-				<option value="6">주문취소</option>
-			</select>&nbsp;
-			<input type="image" src="${pageContext.servletContext.contextPath }/assets/images/admin/b_edit1.gif" border="0">
-		</td>	
-		<td width="50" align="center" valign="bottom">
-			<a href=""><img src="${pageContext.servletContext.contextPath }/assets/images/admin/b_delete1.gif" border="0"></a>
-		</td>
-		</form>
-	</tr>
-	<tr bgcolor="#F2F2F2" height="23">
-		<form method="post" action="">  
-		<td width="70"  align="center"><a href="jumun_info.jsp?no=0803030002">0803030002</a></td>
-		<td width="70"  align="center">2008-03-03</td>
-		<td width="250" align="left">&nbsp;실크 브라우스</td>	
-		<td width="40" align="center">1</td>	
-		<td width="70"  align="right">120,000&nbsp</td>	
-		<td width="65"  align="center">이길동</td>	
-		<td width="50"  align="center">무통장</td>	
-		<td width="135" align="center" valign="bottom">
-			<select name="state" style="font-size:9pt; color:blue">
-				<option value="1">주문신청</option>
-				<option value="2">주문확인</option>
-				<option value="3">입금확인</option>
-				<option value="4">배송중</option>
-				<option value="5" selected>주문완료</option>
-				<option value="6">주문취소</option>
-			</select>&nbsp;
-			<input type="image" src="${pageContext.servletContext.contextPath }/assets/images/admin/b_edit1.gif" border="0">
-		</td>	
-		<td width="50" align="center" valign="bottom">
-			<a href=""><img src="${pageContext.servletContext.contextPath }/assets/images/admin/b_delete1.gif" border="0"></a>
-		</td>
-		</form>
-	</tr>
-	<tr bgcolor="#F2F2F2" height="23">
-		<form method="post" action="">   
-		<td width="70"  align="center"><a href="jumun_info.jsp?no=0803010006">0803010006</a></td>
-		<td width="70"  align="center">2008-03-01</td>
-		<td width="250" align="left">&nbsp;하얀 브라우스</td>	
-		<td width="40" align="center">1</td>	
-		<td width="70"  align="right">155,000&nbsp</td>	
-		<td width="65"  align="center">김미자</td>	
-		<td width="50"  align="center">카드</td>	
-		<td width="135" align="center" valign="bottom">
-			<select name="state" style="font-size:9pt; color:red">
-				<option value="1">주문신청</option>
-				<option value="2">주문확인</option>
-				<option value="3">입금확인</option>
-				<option value="4">배송중</option>
-				<option value="5">주문완료</option>
-				<option value="6"selected>주문취소</option>
-			</select>&nbsp;
-			<input type="image" src="${pageContext.servletContext.contextPath }/assets/images/admin/b_edit1.gif" border="0">
-		</td>	
-		<td width="50" align="center" valign="bottom">
-			<a href=""><img src="${pageContext.servletContext.contextPath }/assets/images/admin/b_delete1.gif" border="0"></a>
-		</td>
-		</form>
-	</tr>
+	
+	
+	<!--  -->
+		
+	<c:forEach var="vo" items="${list }" varStatus="status">
+	
+		<tr bgcolor="#F2F2F2" height="23">
+			<form method="post" action="${pageContext.servletContext.contextPath}/admin/ad/jumunmodify">
+			<input name="orderKeyNo" type="hidden" value="${vo.orderKeyNo}"> 
+			<td width="70"  align="center"><a href="jumun_info.jsp?no=0803050004">${vo.orderNo}</a></td>
+			<td width="70"  align="center">${vo.date}</td>
+			<td width="250" align="left">&nbsp;${vo.title}</td>	
+			<td width="40" align="center">${vo.count}</td>	
+			<td width="70"  align="right">${vo.price}&nbsp</td>	
+			<td width="65"  align="center">${vo.orderName}</td>	
+			<td width="50"  align="center">${vo.way}</td>	
+			<td width="135" align="center" valign="bottom">
+				<select name="state" style="font-size:9pt; color:black">
+					<c:if test='${("주문신청" eq vo.state)}'>
+						<option value="주문신청" selected >주문신청</option>
+						<option value="주문확인">주문확인</option>
+						<option value="입금확인">입금확인</option>
+						<option value="배송중">배송중</option>
+						<option value="주문완료">주문완료</option>
+						<option value="주문취소">주문취소</option>
+					</c:if>
+					<c:if test='${("주문확인" eq vo.state)}'>
+						<option value="주문신청">주문신청</option>
+						<option value="주문확인" selected >주문확인</option>
+						<option value="입금확인">입금확인</option>
+						<option value="배송중">배송중</option>
+						<option value="주문완료">주문완료</option>
+						<option value="주문취소">주문취소</option>
+					</c:if>
+					<c:if test='${("입금확인" eq vo.state)}'>
+						<option value="주문신청">주문신청</option>
+						<option value="주문확인">주문확인</option>
+						<option value="입금확인" selected >입금확인</option>
+						<option value="배송중">배송중</option>
+						<option value="주문완료">주문완료</option>
+						<option value="주문취소">주문취소</option>
+					</c:if>
+					<c:if test='${("배송중" eq vo.state)}'>
+						<option value="주문신청" >주문신청</option>
+						<option value="주문확인">주문확인</option>
+						<option value="입금확인">입금확인</option>
+						<option value="배송중"  selected >배송중</option>
+						<option value="주문완료">주문완료</option>
+						<option value="주문취소">주문취소</option>
+					</c:if>
+					<c:if test='${("주문완료" eq vo.state)}'>
+						<option value="주문신청">주문신청</option>
+						<option value="주문확인">주문확인</option>
+						<option value="입금확인">입금확인</option>
+						<option value="배송중">배송중</option>
+						<option value="주문완료"  selected >주문완료</option>
+						<option value="주문취소">주문취소</option>
+					</c:if>
+					<c:if test='${("주문취소" eq vo.state)}'>
+						<option value="주문신청">주문신청</option>
+						<option value="주문확인">주문확인</option>
+						<option value="입금확인">입금확인</option>
+						<option value="배송중">배송중</option>
+						<option value="주문완료">주문완료</option>
+						<option value="주문취소"  selected >주문취소</option>
+					</c:if>
+				</select>&nbsp;
+				<input type="image" src="${pageContext.servletContext.contextPath }/assets/images/admin/b_edit1.gif" border="0">
+			</td>	
+			<td width="50" align="center" valign="bottom">
+				<a class="link-delete" data-no="${vo.orderKeyNo}" style="cursor:pointer"><img src="${pageContext.servletContext.contextPath }/assets/images/admin/b_delete1.gif" border="0"></a>
+			</td>
+			</form>
+		</tr>
+	<!--  -->
+	</c:forEach>
 </table>
 <br>
 <table width="800" border="0" cellpadding="0" cellspacing="0">

@@ -7,8 +7,9 @@
 	 	select no,
 	 		   title,
 	 		   price,
-	 		   category_no as categoryNo
-	      from product 
+	 		   category_no as categoryNo,
+	 		   path
+	      from product
  	   ]]>
 	</select> 
 	 	<select id="getListByCategoryNo" resultType="productvo">
@@ -16,9 +17,33 @@
 	 	select no,
 	 		   title,
 	 		   price,
-	 		   category_no as categoryNo
+	 		   category_no as categoryNo,
+	 		   path
 	      from product 
-	      where category_no = #{no}
+	      where category_no = #{no} 
+ 	   ]]>
+	</select>
+	 	<select id="getListByCategoryNoAndDelete" resultType="productvo">
+ 	 <![CDATA[
+	 	select no,
+	 		   title,
+	 		   price,
+	 		   category_no as categoryNo,
+	 		   path
+	      from product 
+	      where category_no = #{no} and
+	      bitmall.product.`delete` = false;
+ 	   ]]>
+	</select>
+ 	<select id="getListByDelete" resultType="productvo">
+ 	 <![CDATA[
+	 	select no,
+	 		   title,
+	 		   price,
+	 		   category_no as categoryNo,
+	 		   path
+	      from product
+ 	 	  where bitmall.product.`delete` = false
  	   ]]>
 	</select>
 	 <select id="getByNo" parameterType="long" resultType="productvo">
@@ -26,14 +51,22 @@
 	 	select no,
 	 		   title,
 	 		   price,
-	 		   category_no as categoryNo
+	 		   category_no as categoryNo,
+	 		   path,
+	 		   bitmall.product.`delete`
 	      from product 
-	 	 where no=#{no} 
+	 	 where no=#{no}
  	   ]]>
 	</select> 
-		<insert id="insert" parameterType="productvo">
+	<insert id="insert" parameterType="productvo">
 	 	 <![CDATA[
-		insert into product values (null,#{title},#{price},#{categoryNo})
+		insert into product values (null,#{title},#{price},#{categoryNo},#{path},0)
+ 	   ]]>
+	</insert> 
+	<insert id="delete" parameterType="long">
+	 	 <![CDATA[
+		DELETE FROM product
+		WHERE no=#{no};
  	   ]]>
 	</insert> 
 		<!-- <select id="getByEmail" parameterType="string" resultType="uservo">
@@ -67,7 +100,17 @@
 	 	 where id=#{id} 
  	   ]]>
 	</select>-->
-
+	 <update id="update" parameterType="productvo">
+	 	 <![CDATA[
+		update product 
+		set path =#{path}, 
+		title =#{title},
+		price = #{price},
+		category_no = #{categoryNo},
+		bitmall.product.`delete` = #{delete}
+        where no = #{no}
+ 	 	  ]]>
+	</update> 
 
 
 	<!-- <update id="update" parameterType="uservo">

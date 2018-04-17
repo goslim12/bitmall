@@ -14,6 +14,9 @@ public class RecipientService {
 	public int add(RecipientVo vo) {
 		return recipientDao.insert(vo);
 	}
+	public int delete(Long no) {
+		return recipientDao.delete(no);
+	}
 	public RecipientVo get(Long no) {
 		return 	recipientDao.get(no);
 	}

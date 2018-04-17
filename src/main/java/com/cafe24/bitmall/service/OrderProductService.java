@@ -16,6 +16,9 @@ public class OrderProductService {
 	public int add(OrderProductVo vo) {
 		return orderProductDao.insert(vo);
 	}
+	public int delete(Long no) {
+		return orderProductDao.delete(no);
+	}
 	public List<OrderProductVo> getList(Long no) {
 		return 	orderProductDao.getList(no);
 	}

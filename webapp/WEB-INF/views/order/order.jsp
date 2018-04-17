@@ -134,7 +134,7 @@
 							<table cellpadding="0" cellspacing="0" width="100%">
 								<tr>
 									<td width="60">
-										<a href="product/product_detail?no=${map[vo.productNo].no}"><img src="${pageContext.servletContext.contextPath }/assets/images/product/${vo.productNo}.jpg" width="50" height="50" border="0"></a>
+										<a href="product/product_detail?no=${map[vo.productNo].no}"><img src="${pageContext.servletContext.contextPath }/uploads/images/${map[vo.productNo].path}" width="50" height="50" border="0"></a>
 									</td>
 									<td class="cmfont">
 										<a href="product/product_detail?no=${map[vo.productNo].no}"><font color="#0066CC">${map[vo.productNo].title}</a><br>

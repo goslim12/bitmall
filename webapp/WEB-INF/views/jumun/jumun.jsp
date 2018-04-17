@@ -27,7 +27,6 @@
 			<table border="0" cellpadding="0" cellspacing="0" width="747">
 				<tr><td height="13"></td></tr>
 				<tr>
-					<td height="30" align="center"><img src="${pageContext.servletContext.contextPath }/assets/images/jumun_title.gif" width="746" height="30" border="0"></td>
 				</tr>
 				<tr><td height="20"></td></tr>
 			</table>

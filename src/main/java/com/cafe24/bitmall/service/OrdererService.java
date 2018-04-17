@@ -14,6 +14,9 @@ public class OrdererService {
 	public int add(OrdererVo vo) {
 		return ordererDao.insert(vo);
 	}
+	public int delete(Long no) {
+		return ordererDao.delete(no);
+	}
 	public OrdererVo get(Long no) {
 		return 	ordererDao.get(no);
 	}

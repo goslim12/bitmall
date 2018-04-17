@@ -5,6 +5,8 @@ public class ProductVo {
 	private String title;
 	private Long price;
 	private Long categoryNo;
+	private String path;
+	private boolean delete;
 	public Long getNo() {
 		return no;
 	}
@@ -29,9 +31,22 @@ public class ProductVo {
 	public void setCategoryNo(Long categoryNo) {
 		this.categoryNo = categoryNo;
 	}
+	public String getPath() {
+		return path;
+	}
+	public void setPath(String path) {
+		this.path = path;
+	}
+	public boolean isDelete() {
+		return delete;
+	}
+	public void setDelete(boolean delete) {
+		this.delete = delete;
+	}
 	@Override
 	public String toString() {
-		return "ProductVo [no=" + no + ", title=" + title + ", price=" + price + ", categoryNo=" + categoryNo + "]";
+		return "ProductVo [no=" + no + ", title=" + title + ", price=" + price + ", categoryNo=" + categoryNo
+				+ ", path=" + path + ", delete=" + delete + "]";
 	}
 	
 }

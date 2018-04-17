@@ -18,6 +18,10 @@ public class OrdererDao {
 		return sqlSession.insert("orderer.insert",vo);
 
 	}
+	public int delete(Long no) {
+		return sqlSession.delete("orderer.delete",no);
+		
+	}
 //	public List<MemberVo> getList(){
 //		return null;
 //	}

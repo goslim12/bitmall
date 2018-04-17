@@ -1,90 +1,18 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 <head>
-	<title>비트닷컴 쇼핑몰</title>
+	<title>쇼핑몰 관리자 홈페이지</title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<link href="${pageContext.servletContext.contextPath }/assets/css/font.css" rel="stylesheet" type="text/css">
-<script src="${pageContext.servletContext.contextPath}/assets/js/jquery/jquery-1.9.0.js" type="text/javascript"></script>
-<script language = "javascript">
-/* function check_id213123t() 
-{
-	$("input[name=id]").val(${vo.id});
-	$("input[name=name]").val(${vo.name});
-	$("input[name=birthday1]").val(${birthday1});
-	$("input[name=birthday2]").val(${birthday2});
-	$("input[name=birthday3]").val(${birthday3});
-	$("input[name=tel1]").val(${tel1});
-	$("input[name=tel2]").val(${tel2});
-	$("input[name=tel3]").val(${tel3});
-	$("input[name=phone1]").val(${phone1});
-	$("input[name=phone2]").val(${phone2});
-	$("input[name=phone3]").val(${phone3});
-	$("input[name=zip1]").val(${zip1});
-	$("input[name=zip2]").val(${zip2});
-	$("input[name=address]").val(${vo.address});
-	$("input[name=email]").val(${vo.email});
-	console.log("수정 호출");
-	console.log("수정 호출");
-	console.log("수정 호출");
-	console.log("수정 호출");
-	console.log("수정 호출");
-}; */
-function check_id() 
-{
-	console.log("중복 호출");
-	var id = $("input[name=id]").val();
-		$.ajax({
-		url : "${pageContext.servletContext.contextPath}/api/user/checkid", //요청할 URL
-		dataType : "json", //응답받을 데이터타입
-		type : "get", //요청 방식
-		data :  {
-			"id" : id,
-		}, //서버에 요청시 보낼 파라미터 ex) {name:홍길동}
-		success : function(response) { //요청 및 응답에 성공했을 경우
-				if (response.result != "success") {
-				console.log(respone.message);
-				return;
-			}
-			if (response.data == "exist") {
-				alert("이미 사용 중인 아이디 입니다.");
-				$("input[name=id]").val("").focus();
-				return;
-			}
-	
-			if (response.data == "not exist") {
-				alert("사용 가능한 아이디 입니다!");
-				$("input[name=password1]").focus();
-				$("#btn-check").hide();
-				$("#img-check").show(); 
-				return;
-			}
-
-		},
-		error : function(xhr, status, e) { //요청 및 응답에 실패 한 경우
-			console.error(status + ":" + e);
-
-		}
-	});  
-};
-
-
-</script>
-
 </head>
-<body style="margin:0">
-<jsp:include page="/WEB-INF/views/include/head.jsp"/>
-<jsp:include page="/WEB-INF/views/include/search.jsp"/>
-<table width="959" border="0" cellspacing="0" cellpadding="0" align="center">
-	<tr><td height="10" colspan="2"></td></tr>
-	<tr>
-		<td height="100%" valign="top">
-			<jsp:include page="/WEB-INF/views/include/navigation.jsp"/>
-		</td>
-		<td width="10"></td>
-		<td valign="top">
+<body bgcolor="white" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<input type="hidden" name="no" value="${vo.no}">
+<br>
+<jsp:include page="/WEB-INF/views/include/admin-menu.jsp"/>
+<hr width='900' size='3'>
 
 		<!-------------------------------------------------------------------------------------------->	
 		<!-- 시작 : 다른 웹페이지 삽입할 부분                                                                                                                                                            -->
@@ -106,7 +34,7 @@ function check_id()
 				<tr><td height="10"></td></tr>
 			</table>
 
-			<form name="form2" method="post" action="${pageContext.servletContext.contextPath }/user/member_modifying/${authUser.no }">
+			<form name="form2" method="post" action="${pageContext.servletContext.contextPath }/admin/ad/member_modifying/${vo.no }">
 			<table border="0" cellpadding="5" cellspacing="1" width="685" bgcolor="cccccc">
 				<tr>
 					<td align="center" bgcolor="efefef">
@@ -232,10 +160,6 @@ function check_id()
 		<!-- 끝 : 다른 웹페이지 삽입할 부분                                                                                                                                                              -->
 		<!-------------------------------------------------------------------------------------------->	
 
-		</td>
-	</tr>
-</table>
 <br><br>
-<jsp:include page="/WEB-INF/views/include/footer.jsp"/>
 </body>
 </html>

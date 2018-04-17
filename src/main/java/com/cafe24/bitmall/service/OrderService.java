@@ -17,8 +17,14 @@ public class OrderService {
 	public int add(OrderVo vo) {
 		return orderDao.insert(vo);
 	}
+	public int delete(Long no) {
+		return orderDao.delete(no);
+	}
 	public List<OrderVo> getListByMemNo(Long no){
 		return orderDao.getListByMemNo(no);
+	}
+	public List<OrderVo> getList(){
+		return orderDao.getList();
 	}
 	public OrderVo getByNo(Long no){
 		return orderDao.getByNo(no);

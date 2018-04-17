@@ -18,10 +18,15 @@ public class OrderDao {
 	
 	public int insert(OrderVo vo) {
 		return sqlSession.insert("order.insert",vo);
-
+	}
+	public int delete(Long no) {
+		return sqlSession.delete("order.delete",no);
 	}
 	public List<OrderVo> getListByMemNo(Long no){
 		return sqlSession.selectList("order.getListByMemNo",no);
+	}
+	public List<OrderVo> getList(){
+		return sqlSession.selectList("order.getList");
 	}
 	public OrderVo getByNo(Long no){
 		return sqlSession.selectOne("order.getByNo",no);

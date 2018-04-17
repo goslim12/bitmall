@@ -13,8 +13,14 @@ public class ProductService {
 	@Autowired
 	private ProductDao productDao;
 	
-	public void add(ProductVo vo) {
-		productDao.insert(vo);
+	public int add(ProductVo vo) {
+		return productDao.insert(vo);
+	}
+	public int delete(Long no) {
+		return productDao.delete(no);
+	}
+	public int update(ProductVo vo) {
+		return productDao.update(vo);
 	}
 	public ProductVo get(ProductVo vo) {
 		return 	productDao.get(vo.getNo());
@@ -27,6 +33,12 @@ public class ProductService {
 	}
 	public List<ProductVo> getListByCategoryNo(Long no) {
 		return 	productDao.getList(no);
+	}
+	public List<ProductVo> getListByDelete() {
+		return 	productDao.getListByDelete();
+	}
+	public List<ProductVo> getListByCategoryNoAndDelete(Long no) {
+		return 	productDao.getListByDelete(no);
 	}
 	public ProductVo getByNo(Long no) {
 		return 	productDao.get(no);

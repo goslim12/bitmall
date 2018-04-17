@@ -12,6 +12,7 @@
 	<title>비트닷컴 쇼핑몰</title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<link href="${pageContext.servletContext.contextPath }/assets/css/font.css" rel="stylesheet" type="text/css">
+	<link href="${pageContext.servletContext.contextPath }/assets/css/table.css" rel="stylesheet" type="text/css">
 </head>
 <body style="margin:0">
 <jsp:include page="/WEB-INF/views/include/head.jsp"/>
@@ -81,11 +82,11 @@
 						<c:if test='${("0" eq (status.index%5))}'>
 						<tr>
 						</c:if>
-							<td width="150" height="205" align="center" valign="top">
+							<td  width="150" height="205" align="center" valign="top">
 								<table border="0" cellpadding="0" cellspacing="0" width="100" class="cmfont">
 										<tr> 
 										<td align="center"> 
-											<a href="product_detail?no=${vo.no}"><img src="${pageContext.servletContext.contextPath }/assets/images/product/${vo.no}.jpg" width="120" height="140" border="0"></a>
+											<a href="product_detail?no=${vo.no}"><img class="circle" src="${pageContext.servletContext.contextPath }/uploads/images/${vo.path}" width="120" height="140" border="0"></a>
 										</td>
 									</tr>
 									<tr><td height="5"></td></tr>
