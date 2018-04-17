@@ -37,40 +37,6 @@
 			<form name="form2" method="post" action="product.jsp">
 			<input type="hidden" name="menu" value="1">
 
-			<table border="0" cellpadding="0" cellspacing="5" width="767" class="cmfont" bgcolor="#efefef">
-				<tr>
-					<td bgcolor="white" align="center">
-						<table border="0" cellpadding="0" cellspacing="0" width="751" class="cmfont">
-							<tr>
-								<td align="center" valign="middle">
-									<table border="0" cellpadding="0" cellspacing="0" width="730" height="40" class="cmfont">
-										<tr>
-											<td width="500" class="cmfont">
-												<font color="#C83762" class="cmfont"><b>멸치 &nbsp</b></font>&nbsp
-											</td>
-											<td align="right" width="274">
-												<table width="100%" border="0" cellpadding="0" cellspacing="0" class="cmfont">
-													<tr>
-														<td align="right"><font color="EF3F25"><b>16</b></font> 개의 상품.&nbsp;&nbsp;&nbsp</td>
-														<td width="100">
-															<select name="sort" size="1" class="cmfont" onChange="form2.submit()">
-																<option value="new" selected>신상품순 정렬</option>
-																<option value="up">고가격순 정렬</option>
-																<option value="down">저가격순 정렬</option>
-																<option value="name">상품명 정렬</option>
-															</select>
-														</td>
-													</tr>
-												</table>
-											</td>
-										</tr>
-									</table>
-								</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-			</table>
 			</form>
 			<!-- form2 -->
 			<table border="0" cellpadding="0" cellspacing="0">
@@ -99,7 +65,7 @@
 									<tr><td height="20" align="center"><b>${vo.price}원</br></b></td></tr>
 								</table>
 							</td>
-							<c:if test='${"4" eq (status.index/5)}'>
+							<c:if test='${"4" eq (status.index%5)}'>
 								</tr>
 								<tr><td height="10"></td></tr>
 							</c:if>

@@ -6,13 +6,10 @@
 	<tr> 
 		<td>
 			<!--  상단 왼쪽 로고  -------------------------------------------->
-			<table border="0" cellspacing="0" cellpadding="0" width="182">
+			<table style="border-style: none" border="0" cellspacing="0" cellpadding="0" width="182">
 				<tr>
-					<td>
-						<a href="/ad" onclick="<input type='hidden' name='no' value='${authUser.no }'>" title="no" id="no" >
+					<td width="182" height="40" >
 						<input type="hidden" name="no" value="${authUser.no }">
-						<img src="${pageContext.servletContext.contextPath }/assets/images/top_logo.gif" width="182" height="40" border="0">
-						</a>
 					</td>
 				</tr>
 			</table>
@@ -62,10 +59,10 @@
 	</tr>
 </table>
 
-<!--  상단 메인 이미지 --------------------------------------------------->
+<!--  상단 메인 이미지 --------------------------------------------------->	
 <table width="959" border="0" cellspacing="0" cellpadding="0" align="center">
 	<tr>
-		<td><img src="${pageContext.servletContext.contextPath }/assets/images/main_image0.jpg" width="182" height="175"></td>
-	  <td><img src="${pageContext.servletContext.contextPath }/assets/images/main_image1.jpg" width="777" height="175"></td>
+		<td width="182" height="175"></td>
+	  <td><img src="${pageContext.servletContext.contextPath }/assets/images/main_image1.png" width="777" height="175"></td>
 	</tr>
 </table>
